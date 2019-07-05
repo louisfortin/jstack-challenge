@@ -1,11 +1,11 @@
 import React from 'react';
 import './profile.css';
 
-const Repository = param => {
+const PinnedRepository = param => {
   const repo = param.props;
   return (
     <div className='card'>
-      <div className='card__side'>
+      <div className='card__side card__side--front'>
         <div className='card__description'>{repo.name}</div>
         <div className='repo-attr'>
           <h3>
@@ -14,10 +14,13 @@ const Repository = param => {
           <h3>
             {repo.watchers} <span className='fa fa-eye' />
           </h3>
-          <a href={repo.url} target='_blank'>
-            <i className='fa fa-external-link' />
-          </a>
         </div>
+      </div>
+      <div
+        className={
+          'card__side card__side--back card__side--back-' + (param.index % 3)
+        }
+      >
         <div className='card__content'>
           <p>{repo.description}</p>
         </div>
@@ -26,4 +29,4 @@ const Repository = param => {
   );
 };
 
-export default Repository;
+export default PinnedRepository;

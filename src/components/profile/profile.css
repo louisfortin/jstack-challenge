@@ -120,16 +120,19 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  min-height: 100px;
   backface-visibility: hidden;
   transition: all 0.6s ease;
   box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.2);
 }
 .card__side--front {
   position: absolute;
+  min-height: 100px;
   background-color: #fff;
 }
 .card__side--back {
   color: #fff;
+  min-height: 100px;
   transform: rotateY(180deg);
 }
 .card__side--back-0 {
@@ -159,6 +162,12 @@ body {
   width: 1.5em;
   height: 1.5em;
   fill: #fff;
+}
+
+.repo-attr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .mb5 {

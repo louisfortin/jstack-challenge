@@ -1,35 +1,17 @@
-export const GetProfile = () => {
+export const actionGetProfile = () => {
   return {
     type: 'getProfile'
   };
 };
-export const GetProfileSuccess = profile => {
+export const actionGetProfileSuccess = payload => {
   return {
     type: 'getProfileSuccess',
-    payload: profile
+    payload
   };
 };
-export const GetProfileFail = error => {
+export const actionGetProfileFail = error => {
   return {
     type: 'getProfileFail',
-    payload: error
-  };
-};
-
-export const GetRepositories = () => {
-  return {
-    type: 'getRepositories'
-  };
-};
-export const GetRepositoriesSuccess = repositories => {
-  return {
-    type: 'getRepositoriesSuccess',
-    payload: repositories
-  };
-};
-export const GetRepositoriesFail = error => {
-  return {
-    type: 'getRepositoriesFail',
     payload: error
   };
 };

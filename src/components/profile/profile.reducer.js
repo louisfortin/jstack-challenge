@@ -14,9 +14,7 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'getProfile':
-    case 'getPinnedRepositories':
-    case 'getRepositories': {
+    case 'getProfile': {
       return {
         ...state,
         loading: true,
@@ -27,24 +25,12 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        profile: action.payload
-      };
-    case 'getPinnedRepositoriesSuccess':
-      return {
-        ...state,
-        loading: false,
-        pinnedRepositories: action.payload
-      };
-    case 'getRepositoriesSuccess':
-      return {
-        ...state,
-        loading: false,
-        repositories: action.payload
+        profile: action.payload.profile,
+        pinnedRepositories: action.payload.pinned,
+        repositories: action.payload.repos
       };
 
-    case 'getProfileFail':
-    case 'getPinnedRepositoriesFail':
-    case 'getRepositoriesFail': {
+    case 'getProfileFail': {
       return {
         ...state,
         loading: false,

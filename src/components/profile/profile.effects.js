@@ -1,40 +1,30 @@
 import { profileService } from './profile.service';
 import {
-  GetProfile,
-  GetProfileSuccess,
-  GetProfileFail,
-  GetRepositories,
-  GetRepositoriesSuccess,
-  GetRepositoriesFail
+  actionGetProfile,
+  actionGetProfileSuccess,
+  actionGetProfileFail
 } from './profile.action';
 
 export const getProfile = id => dispatch => {
-  dispatch(GetProfile());
+  dispatch(actionGetProfile());
   profileService
     .getProfile(id)
     .then(rep => {
-      if (rep.id) {
-        dispatch(GetProfileSuccess(transformProfile(rep)));
-        dispatch(getRepositories(id));
+      if (!rep.errors) {
+        dispatch(
+          actionGetProfileSuccess({
+            profile: transformProfile(rep.data.user),
+            repos: transformRepos(rep.data.user.repositories.edges),
+            pinned: transformRepos(rep.data.user.pinnedRepositories.edges)
+          })
+        );
       } else {
         throw new Error('Profile not found');
       }
     })
     .catch(err => {
-      dispatch(GetProfileFail(err));
+      dispatch(actionGetProfileFail(err));
       alert('get profil fail : ', err);
-    });
-};
-
-const getRepositories = id => dispatch => {
-  dispatch(GetRepositories());
-  profileService
-    .getRepos(id)
-    .then(rep => {
-      dispatch(GetRepositoriesSuccess(transformRepos(rep)));
-    })
-    .catch(err => {
-      dispatch(GetRepositoriesFail(err));
     });
 };
 
@@ -45,19 +35,19 @@ const transformProfile = profile => {
     login: profile.login,
     company: profile.company,
     location: profile.location,
-    picture: profile.avatar_url
+    picture: profile.avatarUrl
   };
 };
 
 const transformRepos = repos => {
   return repos.map(repo => {
     return {
-      id: repo.id,
-      name: repo.name,
-      description: repo.description,
-      url: repo.html_url,
-      stars: repo.stargazers_count,
-      watch: repo.watchers_count
+      id: repo.node.id,
+      name: repo.node.name,
+      description: repo.node.description,
+      url: repo.node.url,
+      stars: repo.node.stargazers.totalCount,
+      watchers: repo.node.watchers.totalCount
     };
   });
 };
