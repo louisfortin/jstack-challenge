@@ -70,7 +70,11 @@ const Profile = props => {
             <p className='mb5 fa fa-street-view'>{profile.location}</p>
           )}
           {profile.login && (
-            <a href={'https://github.com/' + profile.login} target='_blank'>
+            <a
+              href={'https://github.com/' + profile.login}
+              rel='noopener noreferrer'
+              target='_blank'
+            >
               <i className='mb5 fa fa-github' />
             </a>
           )}

@@ -14,7 +14,7 @@ const Repository = param => {
           <h3>
             {repo.watchers} <span className='fa fa-eye' />
           </h3>
-          <a href={repo.url} target='_blank'>
+          <a href={repo.url} target='_blank' rel='noopener noreferrer'>
             <i className='fa fa-external-link' />
           </a>
         </div>
