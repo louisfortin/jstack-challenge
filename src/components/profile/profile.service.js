@@ -10,7 +10,7 @@ export const profileService = {
       body: JSON.stringify({
         query: `
         query { 
-          user(login: ${id}) {
+          user(login: "${id}") {
             avatarUrl
             url
             company
