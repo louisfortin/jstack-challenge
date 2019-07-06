@@ -2,7 +2,7 @@ import { profileService } from './profile.service';
 import {
   actionGetProfile,
   actionGetProfileSuccess,
-  actionGetProfileFail
+  actionGetProfileFailure
 } from './profile.action';
 
 export const getProfile = id => dispatch => {
@@ -23,7 +23,7 @@ export const getProfile = id => dispatch => {
       }
     })
     .catch(err => {
-      dispatch(actionGetProfileFail(err));
+      dispatch(actionGetProfileFailure(err));
       alert('get profil fail : ', err);
     });
 };

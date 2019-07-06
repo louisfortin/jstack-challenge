@@ -9,9 +9,9 @@ export const actionGetProfileSuccess = payload => {
     payload
   };
 };
-export const actionGetProfileFail = error => {
+export const actionGetProfileFailure = error => {
   return {
-    type: 'getProfileFail',
+    type: 'getProfileFailure',
     payload: error
   };
 };

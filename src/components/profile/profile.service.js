@@ -11,12 +11,12 @@ export const profileService = {
         query: `
         query { 
           user(login: "${id}") {
+            id
+            name
+            login
             avatarUrl
             url
             company
-            id
-            login
-            name
             location
             pinnedRepositories(first: 100) {
               edges {

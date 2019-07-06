@@ -30,7 +30,7 @@ const profileReducer = (state = initialState, action) => {
         repositories: action.payload.repos
       };
 
-    case 'getProfileFail': {
+    case 'getProfileFailure': {
       return {
         ...state,
         loading: false,
